@@ -1,0 +1,29 @@
+:root {
+	--dark: #17192D;
+  --primary: #023B78;
+  --primary-light: #2188FF;
+  --light: #fff;
+  --light-gray: #E3EAEF;
+  --gray: #D8DFE6;
+  --dark-gray: #77818C;
+  --success: #52C41A;
+  --danger: #ED3833;
+}
+
+html,
+body {
+	max-width: 100vw;
+	overflow-x: hidden;
+	height: 100vh;
+}
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}

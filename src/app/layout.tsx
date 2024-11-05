@@ -1,4 +1,5 @@
 import "@/assets/css/globals.css"
+import HeaderContent from "@/components/headerContent"
 
 export default function RootLayout({
 	children,
@@ -12,7 +13,10 @@ export default function RootLayout({
 				<link rel="icon" href="/favicon.ico" />
 				<title>Tree View Tractian Challenge</title>
 			</head>
-			<body>{children}</body>
+			<body>
+				<HeaderContent />
+				<main>{children}</main>
+			</body>
 		</html>
 	)
 }

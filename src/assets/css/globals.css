@@ -1,13 +1,13 @@
 :root {
-	--dark: #17192D;
-  --primary: #023B78;
-  --primary-light: #2188FF;
-  --light: #fff;
-  --light-gray: #E3EAEF;
-  --gray: #D8DFE6;
-  --dark-gray: #77818C;
-  --success: #52C41A;
-  --danger: #ED3833;
+	--dark: #17192d;
+	--primary: #023b78;
+	--primary-light: #2188ff;
+	--light: #fff;
+	--light-gray: #e3eaef;
+	--gray: #d8dfe6;
+	--dark-gray: #77818c;
+	--success: #52c41a;
+	--danger: #ed3833;
 }
 
 html,
@@ -15,6 +15,25 @@ body {
 	max-width: 100vw;
 	overflow-x: hidden;
 	height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+button,
+li,
+ul,
+span,
+small,
+p,
+div,
+input,
+textarea {
+	font-family: "Inter", sans-serif;
 }
 
 * {

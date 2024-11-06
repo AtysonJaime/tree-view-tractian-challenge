@@ -7,7 +7,13 @@ export default function HeaderContent() {
 	return (
 		<StyledHeaderContent>
 			<div className="logo">
-				<Image src={Logo.src} alt="Logo Tractian" width={100} height={100} />
+				<Image
+					src={Logo.src}
+					alt="Logo Tractian"
+					width={100}
+					height={100}
+					priority
+				/>
 			</div>
 			<div className="buttons">
 				<button>
@@ -18,3 +24,4 @@ export default function HeaderContent() {
 		</StyledHeaderContent>
 	)
 }
+

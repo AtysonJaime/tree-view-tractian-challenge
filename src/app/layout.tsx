@@ -1,5 +1,6 @@
+"use client"
 import "@/assets/css/globals.css"
-import HeaderContent from "@/components/headerContent"
+import StyledComponentsRegistry from "../lib/registry"
 
 export default function RootLayout({
 	children,
@@ -14,8 +15,7 @@ export default function RootLayout({
 				<title>Tree View Tractian Challenge</title>
 			</head>
 			<body>
-				<HeaderContent />
-				<main>{children}</main>
+				<StyledComponentsRegistry>{children}</StyledComponentsRegistry>
 			</body>
 		</html>
 	)

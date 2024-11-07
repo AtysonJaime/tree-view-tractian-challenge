@@ -2,6 +2,13 @@
   "name": "tree-view-tractian-challenge",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Atyson Jaime",
+    "email": "atysonjaimedev@gmail.com"
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,7 +19,8 @@
     "axios": "^1.7.7",
     "next": "15.0.2",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
     "@types/node": "^20",

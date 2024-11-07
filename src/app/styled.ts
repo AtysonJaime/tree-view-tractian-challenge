@@ -27,8 +27,11 @@ export const SectionContent = styled.section`
 
 		.info-unit {
 			display: flex;
-			align-items: center;
+			align-items: baseline;
 			gap: 8px;
+			small {
+				color: rgba(119, 129, 140, 1);
+			}
 		}
 		.filters {
 			display: flex;

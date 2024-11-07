@@ -6,8 +6,7 @@ import { ButtonLoading, StyledHeaderContent } from "./styled"
 import { useCompaniesStore } from "@/stores/companies"
 
 export default function HeaderContent() {
-  const { loadingCompanies } = useCompaniesStore.getState()
-  const { companies, selectedCompany } = useCompaniesStore.getState().state
+  const useCompanies = useCompaniesStore()
 	return (
 		<StyledHeaderContent>
 			<div className="logo">
@@ -21,10 +20,10 @@ export default function HeaderContent() {
 			</div>
 			<div className="buttons">
         {
-          loadingCompanies
+          useCompanies.loadingCompanies
             ? <LoadingCompanies/>
-            :  companies.map((company) => (
-              <button key={company.id} className={company.id === selectedCompany.id ? "active" : ""}>
+            :  useCompanies.state.companies.map((company) => (
+              <button key={company.id} className={company.id === useCompanies.state.selectedCompany.id ? "active" : ""}>
                 <GoldIcon />
                 <span>{company.name} Unit</span>
               </button>

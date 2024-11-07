@@ -7,13 +7,10 @@ import { ThunderboltIcon } from "@/components/icons/thunderbolt"
 import { ExclamationCircleIcon } from "@/components/icons/exclamationCircle"
 
 export default function Home() {
-	const { getCompanies } = useCompaniesStore.getState().actions
-	const { loadingCompanies } = useCompaniesStore.getState()
-	const { selectedCompany } = useCompaniesStore.getState().state
+	const useCompanies = useCompaniesStore()
 	useEffect(() => {
-		getCompanies()
+		useCompanies.actions.getCompanies()
 	}, [])
-	console.log(selectedCompany, loadingCompanies)
 
 	return (
 		<>
@@ -23,7 +20,7 @@ export default function Home() {
 					<div className="header">
 						<div className="info-unit">
 							<h5>Ativos</h5>
-							{loadingCompanies ? (
+							{useCompanies.loadingCompanies ? (
 								<small
 									className="skeleton"
 									style={{
@@ -33,7 +30,7 @@ export default function Home() {
 									}}
 								></small>
 							) : (
-								<small>{selectedCompany?.name}</small>
+								<small>/{useCompanies.state.selectedCompany?.name}</small>
 							)}
 						</div>
 						<div className="filters">

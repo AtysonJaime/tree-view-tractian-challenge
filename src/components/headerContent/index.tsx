@@ -1,9 +1,13 @@
+'use client'
 import Image from "next/image"
 import Logo from "@/assets/images/logo.svg"
 import { GoldIcon } from "../icons/gold"
-import { StyledHeaderContent } from "./styled"
+import { ButtonLoading, StyledHeaderContent } from "./styled"
+import { useCompaniesStore } from "@/stores/companies"
 
 export default function HeaderContent() {
+  const { loadingCompanies } = useCompaniesStore.getState()
+  const { companies, selectedCompany } = useCompaniesStore.getState().state
 	return (
 		<StyledHeaderContent>
 			<div className="logo">
@@ -16,12 +20,27 @@ export default function HeaderContent() {
 				/>
 			</div>
 			<div className="buttons">
-				<button>
-					<GoldIcon />
-					<span>Gold</span>
-				</button>
+        {
+          loadingCompanies
+            ? <LoadingCompanies/>
+            :  companies.map((company) => (
+              <button key={company.id} className={company.id === selectedCompany.id ? "active" : ""}>
+                <GoldIcon />
+                <span>{company.name} Unit</span>
+              </button>
+            ))
+        }
 			</div>
 		</StyledHeaderContent>
 	)
 }
 
+function LoadingCompanies() {
+  return (
+    <>
+      <ButtonLoading className="skeleton"/>
+      <ButtonLoading className="skeleton"/>
+      <ButtonLoading className="skeleton"/>
+    </>
+  )
+}

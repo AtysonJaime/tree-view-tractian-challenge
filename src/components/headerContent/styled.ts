@@ -26,6 +26,7 @@ export const StyledHeaderContent = styled.header`
 			align-items: center;
 			height: 24px;
 			color: var(--light);
+      gap: 8px;
 			background-color: var(--primary);
 			border: 0;
 			border-radius: 0.125rem;
@@ -41,4 +42,12 @@ export const StyledHeaderContent = styled.header`
 			}
 		}
 	}
+`
+
+export const ButtonLoading = styled.div`
+  display: flex;
+  align-items: center;
+  height: 24px;
+  width: 100px;
+  background-color: var(--dark-gray);
 `

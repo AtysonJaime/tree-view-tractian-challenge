@@ -75,6 +75,8 @@ export const SectionContent = styled.section`
 
 	.tree-content {
 		display: grid;
+		height: 100%;
+		flex: 1;
 		gap: 8px;
 		grid-template-columns: 400px auto;
 		width: 100%;

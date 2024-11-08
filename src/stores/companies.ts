@@ -106,22 +106,22 @@ export const useCompaniesStore = create<IUseCompaniesStore>((set) => ({
 					console.log(useCompaniesStore.getState())
 					const buildTree: TreeList[] = []
 
-          // Location
+					// Location
 					const locationWithoutChildren = useCompaniesStore
 						.getState()
 						.state.locationList.filter((location) => location.parentId === null)
 
-          locationWithoutChildren.forEach((location) => {
-            buildTree.push({
-              id: location.id,
-              name: location.name,
-              type: "location",
-              children: [],
-            })
-          })
-					
-          // SubLocation
-          const locationWithChildren = useCompaniesStore
+					locationWithoutChildren.forEach((location) => {
+						buildTree.push({
+							id: location.id,
+							name: location.name,
+							type: "location",
+							children: [],
+						})
+					})
+
+					// SubLocation
+					const locationWithChildren = useCompaniesStore
 						.getState()
 						.state.locationList.filter((location) => location.parentId !== null)
 
@@ -138,15 +138,25 @@ export const useCompaniesStore = create<IUseCompaniesStore>((set) => ({
 							})
 						}
 					})
-          
-          // Assets without father but it is a component
-          const assetsWithoutFatherButItIsAComponent = useCompaniesStore.getState().state.assetList.filter(
-            (asset) => asset.parentId === null && asset.locationId === null && asset.sensorType !== null
-          )
-          
 
+					// Assets without father but it is a component
+					const assetsWithoutFatherButItIsAComponent = useCompaniesStore
+						.getState()
+						.state.assetList.filter(
+							(asset) =>
+								asset.parentId === null &&
+								asset.locationId === null &&
+								asset.sensorType !== null
+						)
 
-					
+					assetsWithoutFatherButItIsAComponent.forEach((asset) => {
+						buildTree.push({
+							id: asset.id,
+							name: asset.name,
+							type: "component",
+							children: [],
+						})
+					})
 				})
 				.catch((err) => {
 					console.log("Error on create tree", err)

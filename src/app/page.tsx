@@ -3,8 +3,9 @@ import { useEffect } from "react"
 import { MainContent, SectionContent } from "./styled"
 import HeaderContent from "@/components/headerContent"
 import { useCompaniesStore } from "@/stores/companies"
-import { ThunderboltIcon } from "@/components/icons/thunderbolt"
-import { ExclamationCircleIcon } from "@/components/icons/exclamationCircle"
+import { ThunderboltIcon } from "@/components/Icons/Thunderbolt"
+import { ExclamationCircleIcon } from "@/components/Icons/ExclamationCircle"
+import TreeContent from "@/components/TreeContent"
 
 export default function Home() {
 	const useCompanies = useCompaniesStore()
@@ -44,7 +45,9 @@ export default function Home() {
 							</button>
 						</div>
 					</div>
-					<div className="tree-content"></div>
+					<div className="tree-content">
+						<TreeContent />
+					</div>
 				</SectionContent>
 			</MainContent>
 		</>

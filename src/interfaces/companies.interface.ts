@@ -22,16 +22,28 @@ export type TAsset = {
 export interface IUseCompaniesStore {
 	state: IStateCompanies
 	actions: TActionsCompanies
-  loadingCompanies: boolean
-  loadingTree: boolean
+	loadingCompanies: boolean
+	loadingTree: boolean
 }
 
 export interface IStateCompanies {
-  companies: TCompany[]
-  selectedCompany: TCompany
-  tree: string
+	companies: TCompany[]
+	selectedCompany: TCompany
+	treeList: TreeList[]
+	locationList: TLocation[]
+	assetList: TAsset[]
 }
 
 type TActionsCompanies = {
 	getCompanies: () => void
+	getLocations: () => void
+	getAssets: () => void
+	createTree: () => void
+}
+
+export type TreeList = {
+	id: string
+	name: string
+	type: string
+	children: TreeList[]
 }

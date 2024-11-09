@@ -80,5 +80,9 @@ export const SectionContent = styled.section`
 		gap: 8px;
 		grid-template-columns: 400px auto;
 		width: 100%;
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
 	}
 `

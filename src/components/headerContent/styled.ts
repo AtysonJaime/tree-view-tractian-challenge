@@ -8,6 +8,7 @@ export const StyledHeaderContent = styled.header`
 	width: 100%;
 	background-color: var(--dark);
 	padding: 1rem;
+	gap: 1rem;
 
 	.logo {
 		img {
@@ -20,13 +21,14 @@ export const StyledHeaderContent = styled.header`
 	.buttons {
 		display: flex;
 		gap: 10px;
+		flex-wrap: wrap;
 
 		button {
 			display: flex;
 			align-items: center;
 			height: 24px;
 			color: var(--light);
-      gap: 8px;
+			gap: 8px;
 			background-color: var(--primary);
 			border: 0;
 			border-radius: 0.125rem;
@@ -42,12 +44,17 @@ export const StyledHeaderContent = styled.header`
 			}
 		}
 	}
+
+	@media (max-width: 576px) {
+		height: 100%;
+		flex-direction: column;
+	}
 `
 
 export const ButtonLoading = styled.div`
-  display: flex;
-  align-items: center;
-  height: 24px;
-  width: 100px;
-  background-color: var(--dark-gray);
+	display: flex;
+	align-items: center;
+	height: 24px;
+	width: 100px;
+	background-color: var(--dark-gray);
 `

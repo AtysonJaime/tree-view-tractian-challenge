@@ -39,6 +39,7 @@ type TActionsCompanies = {
 	getLocations: () => void
 	getAssets: () => void
 	createTree: () => void
+	changeCompanies: (id: string) => void
 }
 
 export type TreeList = {

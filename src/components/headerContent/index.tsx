@@ -24,6 +24,7 @@ export default function HeaderContent() {
 				) : (
 					useCompanies.state.companies.map((company) => (
 						<button
+							onClick={() => useCompanies.actions.changeCompanies(company.id)}
 							key={company.id}
 							className={
 								company.id === useCompanies.state.selectedCompany.id

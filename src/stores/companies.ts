@@ -47,6 +47,20 @@ export const useCompaniesStore = create<IUseCompaniesStore>((set) => ({
 					useCompaniesStore.getState().actions.createTree()
 				})
 		},
+		changeCompanies: async (id: string) => {
+			const newCompany = useCompaniesStore
+				.getState()
+				.state.companies.find((company) => company.id === id)
+			if (newCompany) {
+				set((state) => ({
+					state: {
+						...state.state,
+						selectedCompany: newCompany,
+					},
+				}))
+				useCompaniesStore.getState().actions.createTree()
+			}
+		},
 		getLocations: async () => {
 			await tractianApi
 				.get(
@@ -227,8 +241,8 @@ export const useCompaniesStore = create<IUseCompaniesStore>((set) => ({
 						}
 					})
 
-          console.log(['companies'], useCompaniesStore.getState())
-          console.log("buildTree", buildTree)
+					console.log(["companies"], useCompaniesStore.getState())
+					console.log("buildTree", buildTree)
 
 					set((state) => ({
 						state: {

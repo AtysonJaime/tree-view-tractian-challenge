@@ -15,6 +15,24 @@ export const ListAssetsContent = styled.ul`
 		align-items: center;
 		gap: 8px;
 		width: 100%;
+		flex-direction: column;
+
+		ul {
+			border-left: 1px solid var(--gray);
+			height: 100%;
+			transition: all 0.5s;
+			overflow: auto;
+			padding: 4px;
+
+			&.close-list {
+				height: 0;
+				padding: 0;
+			}
+
+			&.d-none {
+				display: none;
+			}
+		}
 
 		button {
 			display: flex;
@@ -45,4 +63,10 @@ export const ListAssetsContent = styled.ul`
 			}
 		}
 	}
+`
+
+export const ItemListLoading = styled.li`
+	width: 100%;
+	height: 24px;
+	background-color: var(--gray);
 `

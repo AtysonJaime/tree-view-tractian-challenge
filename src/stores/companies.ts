@@ -5,6 +5,7 @@ import {
 	TreeList,
 } from "@/interfaces/companies.interface"
 import { tractianApi } from "@/server"
+import { findItemOnArray } from "@/utils/function"
 import { create } from "zustand"
 
 export const useCompaniesStore = create<IUseCompaniesStore>((set) => ({
@@ -96,14 +97,12 @@ export const useCompaniesStore = create<IUseCompaniesStore>((set) => ({
 				})
 		},
 		createTree: async () => {
-			console.log(["createTree"], useCompaniesStore.getState())
 			set((state) => ({ loadingTree: true }))
 			await Promise.all([
 				useCompaniesStore.getState().actions.getLocations(),
 				useCompaniesStore.getState().actions.getAssets(),
 			])
 				.then(() => {
-					console.log(useCompaniesStore.getState())
 					const buildTree: TreeList[] = []
 
 					// Location
@@ -157,12 +156,93 @@ export const useCompaniesStore = create<IUseCompaniesStore>((set) => ({
 							children: [],
 						})
 					})
+
+					// Assets with a location father and dont have a component
+					const assetsWithALocationFatherAndDontHaveAComponent =
+						useCompaniesStore
+							.getState()
+							.state.assetList.filter(
+								(asset) =>
+									asset.parentId === null &&
+									asset.locationId !== null &&
+									asset.sensorType === null
+							)
+
+					assetsWithALocationFatherAndDontHaveAComponent.forEach((asset) => {
+						const locationId: any = asset.locationId
+						const location = findItemOnArray(buildTree, locationId)
+						if (location) {
+							location.children.push({
+								id: asset.id,
+								name: asset.name,
+								type: "assets",
+								children: [],
+							})
+						}
+					})
+
+					// Assets with a assets father and dont have a component
+					const assetsWithAnAssetsFatherAndDontHaveAComponent =
+						useCompaniesStore
+							.getState()
+							.state.assetList.filter(
+								(asset) =>
+									asset.parentId !== null &&
+									asset.locationId === null &&
+									asset.sensorType === null
+							)
+
+					assetsWithAnAssetsFatherAndDontHaveAComponent.forEach((asset) => {
+						const parentId: any = asset.parentId
+						const parent = findItemOnArray(buildTree, parentId)
+						if (parent) {
+							parent.children.push({
+								id: asset.id,
+								name: asset.name,
+								type: "assets",
+								children: [],
+							})
+						}
+					})
+
+					// Assets with a father and it is a component
+					const assetsWithFatherAndItIsAComponent = useCompaniesStore
+						.getState()
+						.state.assetList.filter(
+							(asset) =>
+								(asset.parentId !== null || asset.locationId !== null) &&
+								asset.sensorType !== null
+						)
+
+					assetsWithFatherAndItIsAComponent.forEach((asset) => {
+						const parentId: any = asset.parentId || asset.locationId
+						const parent = findItemOnArray(buildTree, parentId)
+						if (parent) {
+							parent.children.push({
+								id: asset.id,
+								name: asset.name,
+								type: "component",
+								children: [],
+							})
+						}
+					})
+
+          console.log(['companies'], useCompaniesStore.getState())
+          console.log("buildTree", buildTree)
+
+					set((state) => ({
+						state: {
+							...state.state,
+							treeList: buildTree,
+						},
+					}))
 				})
 				.catch((err) => {
 					console.log("Error on create tree", err)
 				})
 				.finally(() => {
-					set((state) => ({ loadingTree: true }))
+					console.log(useCompaniesStore.getState())
+					set((state) => ({ loadingTree: false }))
 				})
 		},
 	},
